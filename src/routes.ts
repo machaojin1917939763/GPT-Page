@@ -23,7 +23,7 @@ export const routes: IRoute[] = [
     ],
   },
   {
-    name: 'CHAT',
+    name: 'ChatGPT',
     key: 'chat',
   },
 ];

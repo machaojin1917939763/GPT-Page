@@ -6,7 +6,7 @@
 
 .sidebar {
   width: 260px;
-  background-color: #ffffff;
+  background-color: #fff;
   border-right: 1px solid #e5e6eb;
   display: flex;
   flex-direction: column;
@@ -29,13 +29,13 @@
   max-width: 960px;
   margin: 0 auto;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 .chatHeader {
   padding: 16px 24px;
   border-bottom: 1px solid #e5e6eb;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 80%);
   backdrop-filter: blur(8px);
   position: sticky;
   top: 0;
@@ -91,14 +91,14 @@
 }
 
 .markdown pre {
-  background-color: #ffffff !important;
+  background-color: #fff !important;
   border: 1px solid #e5e6eb;
 }
 
 .inputContainer {
   padding: 16px 24px;
   border-top: 1px solid #e5e6eb;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 .inputWrapper {
@@ -117,7 +117,7 @@
 }
 
 .input:focus {
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 .sendButton {
@@ -149,4 +149,38 @@
   .messageContent {
     padding: 0 16px;
   }
+}
+
+.historyList {
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.historyItem {
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: background-color 0.2s;
+}
+
+.historyItem:hover {
+  background-color: rgba(var(--primary-6), 0.1);
+}
+
+.historyTitle {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.historyMessage {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.historyTime {
+  display: block;
+  font-size: 12px;
 }

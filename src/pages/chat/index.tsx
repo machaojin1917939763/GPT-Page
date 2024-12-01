@@ -18,12 +18,45 @@ interface ChatRequest {
   model: string;
 }
 
+interface ChatHistory {
+  id: string;
+  title: string;
+  lastMessage: string;
+  timestamp: number;
+}
+
 function Chat() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [ws, setWs] = useState<WebSocket | null>(null);
   const [sessionId, setSessionId] = useState<string>('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [chatHistory, setChatHistory] = useState<ChatHistory[]>([
+    {
+      id: '1',
+      title: '关于React性能优化的讨论',
+      lastMessage: '我们来讨论一下React中的性能优化策略...',
+      timestamp: Date.now() - 3600000, // 1小时前
+    },
+    {
+      id: '2',
+      title: 'TypeScript类型系统',
+      lastMessage: '泛型是TypeScript中非常重要的特性...',
+      timestamp: Date.now() - 86400000, // 1天前
+    },
+    {
+      id: '3',
+      title: '项目架构设计',
+      lastMessage: '让我们讨论一下微服务架构的优势...',
+      timestamp: Date.now() - 172800000, // 2天前
+    },
+    {
+      id: '4',
+      title: 'WebSocket实现原理',
+      lastMessage: 'WebSocket提供了全双工通信机制...',
+      timestamp: Date.now() - 259200000, // 3天前
+    },
+  ]);
 
   useEffect(() => {
     // 创建WebSocket连接
@@ -131,7 +164,23 @@ function Chat() {
           </Button>
         </div>
         <div className={styles.historyList}>
-          {/* 这里可以后续添加历史对话列表 */}
+          {chatHistory.map((chat) => (
+            <div key={chat.id} className={styles.historyItem}>
+              <Typography.Text className={styles.historyTitle} ellipsis>
+                {chat.title}
+              </Typography.Text>
+              <Typography.Text
+                className={styles.historyMessage}
+                type="secondary"
+                ellipsis
+              >
+                {chat.lastMessage}
+              </Typography.Text>
+              <Typography.Text className={styles.historyTime} type="secondary">
+                {new Date(chat.timestamp).toLocaleDateString()}
+              </Typography.Text>
+            </div>
+          ))}
         </div>
       </div>
 

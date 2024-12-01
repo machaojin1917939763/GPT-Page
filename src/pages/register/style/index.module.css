@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  height: 100vh;
+  background-color: var(--color-bg-1);
+}
+
+.content {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.form {
+  background-color: var(--color-bg-2);
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.actions {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.link {
+  color: rgb(var(--primary-6));
+  margin-left: 8px;
+  padding: 0;
+}
+
+.link:hover {
+  color: rgb(var(--primary-5));
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 16px;
+  }
+
+  .form {
+    padding: 20px;
+  }
+}

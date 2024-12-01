@@ -14,8 +14,10 @@ import useStorage from '@/utils/useStorage';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import styles from './style/index.module.less';
+import { useHistory } from 'react-router-dom';
 
 export default function LoginForm() {
+  const history = useHistory();
   const formRef = useRef<FormInstance>();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -120,6 +122,7 @@ export default function LoginForm() {
           <Button
             type="text"
             long
+            onClick={() => history.push('/register')}
             className={styles['login-form-register-btn']}
           >
             {t['login.form.register']}

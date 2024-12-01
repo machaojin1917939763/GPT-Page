@@ -79,7 +79,7 @@ function Chat() {
       timestamp: Date.now() - 259200000, // 3天前
     },
   ]);
-  const [selectedModel, setSelectedModel] = useState<string>('gpt-4-mini');
+  const [selectedModel, setSelectedModel] = useState<string>('GPT-4o-mini');
 
   const modelOptions: ModelOption[] = [
     { value: 'GPT-4o-2024-08-06', label: 'GPT-4o 2024-08-06' },

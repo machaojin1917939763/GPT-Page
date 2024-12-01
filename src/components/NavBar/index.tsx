@@ -28,7 +28,6 @@ import { GlobalState } from '@/store';
 import { GlobalContext } from '@/context';
 import useLocale from '@/utils/useLocale';
 import Logo from '@/assets/logo.svg';
-import MessageBox from '@/components/MessageBox';
 import IconButton from './IconButton';
 import Settings from '../Settings';
 import styles from './style/index.module.less';
@@ -170,11 +169,6 @@ function Navbar({ show }: { show: boolean }) {
               Message.info(`${nextLang['message.lang.tips']}${value}`);
             }}
           />
-        </li>
-        <li>
-          <MessageBox>
-            <IconButton icon={<IconNotification />} />
-          </MessageBox>
         </li>
         <li>
           <Tooltip

@@ -17,6 +17,7 @@ import {
   IconThumbDown,
   IconImage,
   IconUpload,
+  IconSettings,
 } from '@arco-design/web-react/icon';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import styles from './index.module.css';

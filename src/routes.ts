@@ -18,6 +18,7 @@ export const routes: IRoute[] = [
     key: 'chat',
     icon: IconMessage,
     componentPath: 'chat',
+    ignore: false,
   },
 ];
 

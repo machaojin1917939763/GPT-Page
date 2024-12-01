@@ -1,12 +1,22 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
-import { Layout, Menu, Spin } from '@arco-design/web-react';
+import {
+  Layout,
+  Menu,
+  Spin,
+  Button,
+  Dropdown,
+  Divider,
+} from '@arco-design/web-react';
 import cs from 'classnames';
 import {
   IconDashboard,
   IconTag,
   IconMenuFold,
   IconMenuUnfold,
+  IconSettings,
+  IconPoweroff,
+  IconUser,
 } from '@arco-design/web-react/icon';
 import { useSelector } from 'react-redux';
 import qs from 'query-string';
@@ -173,6 +183,30 @@ function PageLayout() {
   useEffect(() => {
     updateMenuStatus();
   }, [pathname]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  };
+
+  const settingsDropList = (
+    <Menu>
+      <Menu.Item key="profile">
+        <IconUser className={styles.icon} />
+        个人信息
+      </Menu.Item>
+      <Menu.Item key="settings">
+        <IconSettings className={styles.icon} />
+        系统设置
+      </Menu.Item>
+      <Divider style={{ margin: '4px 0' }} />
+      <Menu.Item key="logout" onClick={handleLogout}>
+        <IconPoweroff className={styles.icon} />
+        退出登录
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
     <Layout className={styles.layout}>
       <div
@@ -207,6 +241,14 @@ function PageLayout() {
                 >
                   {renderRoutes(locale)(routes, 1)}
                 </Menu>
+                <div className={styles['menu-footer']}>
+                  <Dropdown droplist={settingsDropList} position="top">
+                    <div className={styles['settings-link']}>
+                      <IconSettings className={styles.icon} />
+                      <span className={styles['settings-text']}>用户设置</span>
+                    </div>
+                  </Dropdown>
+                </div>
               </div>
               <div className={styles['collapse-btn']} onClick={toggleCollapse}>
                 {collapsed ? <IconMenuUnfold /> : <IconMenuFold />}

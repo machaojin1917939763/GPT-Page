@@ -7,6 +7,7 @@ if (!isSSR) {
   Mock.XHR.prototype.withCredentials = true;
 
   setupMock({
+    mock: false,
     setup: () => {
       // 用户信息
       const userRole = window.localStorage.getItem('userRole') || 'admin';

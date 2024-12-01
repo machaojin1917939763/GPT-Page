@@ -43,10 +43,11 @@ export default function LoginForm() {
     setErrorMessage('');
     setLoading(true);
     axios
-      .post('/api/user/login', params)
+      .post('/api/v1/auth/login', params)
       .then((res) => {
-        const { status, msg } = res.data;
-        if (status === 'ok') {
+        const { code, msg } = res.data;
+        console.log(res.data);
+        if (code === 200) {
           afterLoginSuccess(params);
         } else {
           setErrorMessage(msg || t['login.form.login.errMsg']);
@@ -84,7 +85,7 @@ export default function LoginForm() {
         className={styles['login-form']}
         layout="vertical"
         ref={formRef}
-        initialValues={{ userName: 'admin', password: 'admin' }}
+        initialValues={{ userName: 'chaojin', password: '123456' }}
       >
         <Form.Item
           field="userName"

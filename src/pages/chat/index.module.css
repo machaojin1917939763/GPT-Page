@@ -1,16 +1,16 @@
 .container {
   display: flex;
   height: 100vh;
-  background-color: #f5f5f5;
+  width: 100%;
 }
 
 .sidebar {
   width: 260px;
-  background-color: #fff;
-  border-right: 1px solid #e5e6eb;
+  border-right: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  background-color: var(--color-bg-1);
+  flex-shrink: 0;
 }
 
 .newChat {
@@ -26,10 +26,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  max-width: 960px;
-  margin: 0 auto;
-  width: 100%;
-  background-color: #fff;
+  min-width: 0;
 }
 
 .chatHeader {
@@ -50,13 +47,14 @@
 
 .messageWrapper {
   margin-bottom: 16px;
+  position: relative;
 }
 
 .messageContent {
   display: flex;
   gap: 12px;
-  max-width: 800px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 16px;
 }
 
 .messageAvatar {
@@ -96,19 +94,21 @@
 }
 
 .inputContainer {
-  padding: 16px 24px;
-  border-top: 1px solid #e5e6eb;
-  background-color: #fff;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-2);
+  padding-bottom: 16px;
 }
 
 .inputWrapper {
   display: flex;
-  gap: 12px;
-  max-width: 800px;
-  margin: 0 auto;
+  align-items: flex-end;
+  padding: 8px 16px;
+  gap: 8px;
 }
 
 .input {
+  width: 100%;
+  max-width: none;
   border-radius: 8px;
   background-color: #f7f8fa;
   border: 1px solid #e5e6eb;
@@ -183,4 +183,84 @@
 .historyTime {
   display: block;
   font-size: 12px;
+}
+
+.messageActions {
+  visibility: hidden;
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  background-color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.messageWrapper:hover .messageActions {
+  visibility: visible;
+}
+
+.actionButton {
+  padding: 4px 8px;
+  color: #4e5969;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.actionButton:hover {
+  background-color: #f2f3f5;
+}
+
+.toolBar {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-1);
+  align-items: center;
+}
+
+.modelSelect {
+  min-width: 200px;
+  border-radius: 8px;
+}
+
+.modelSelect :global(.arco-select-view) {
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-2);
+  transition: all 0.2s ease;
+}
+
+.modelSelect :global(.arco-select-view:hover) {
+  border-color: rgb(var(--primary-6));
+  background-color: var(--color-bg-white);
+}
+
+.modelSelect :global(.arco-select-view-value) {
+  font-weight: 500;
+  color: var(--color-text-1);
+}
+
+.toolbarButton {
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.toolbarButton:hover {
+  background-color: var(--color-fill-2);
+  color: rgb(var(--primary-6));
+}
+
+.uploadButton {
+  margin-left: auto;
 }

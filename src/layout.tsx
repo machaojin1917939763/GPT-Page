@@ -1,6 +1,6 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb, Spin } from '@arco-design/web-react';
+import { Layout, Menu, Spin } from '@arco-design/web-react';
 import cs from 'classnames';
 import {
   IconDashboard,
@@ -76,7 +76,6 @@ function PageLayout() {
   const paths = (currentComponent || defaultRoute).split('/');
   const defaultOpenKeys = paths.slice(0, paths.length - 1);
 
-  const [breadcrumb, setBreadCrumb] = useState([]);
   const [collapsed, setCollapsed] = useState<boolean>(false);
   const [selectedKeys, setSelectedKeys] =
     useState<string[]>(defaultSelectedKeys);
@@ -97,10 +96,9 @@ function PageLayout() {
   const flattenRoutes = useMemo(() => getFlattenRoutes(routes) || [], [routes]);
 
   function renderRoutes(locale) {
-    routeMap.current.clear();
     return function travel(_routes: IRoute[], level, parentNode = []) {
       return _routes.map((route) => {
-        const { breadcrumb = true, ignore } = route;
+        const { ignore } = route;
         const iconDom = getIconFromKey(route.key);
         const titleDom = (
           <>
@@ -108,18 +106,9 @@ function PageLayout() {
           </>
         );
 
-        routeMap.current.set(
-          `/${route.key}`,
-          breadcrumb ? [...parentNode, route.name] : []
-        );
-
         const visibleChildren = (route.children || []).filter((child) => {
-          const { ignore, breadcrumb = true } = child;
+          const { ignore } = child;
           if (ignore || route.ignore) {
-            routeMap.current.set(
-              `/${child.key}`,
-              breadcrumb ? [...parentNode, route.name, child.name] : []
-            );
           }
 
           return !ignore;
@@ -182,8 +171,6 @@ function PageLayout() {
   }
 
   useEffect(() => {
-    const routeConfig = routeMap.current.get(pathname);
-    setBreadCrumb(routeConfig || []);
     updateMenuStatus();
   }, [pathname]);
   return (
@@ -228,17 +215,6 @@ function PageLayout() {
           )}
           <Layout className={styles['layout-content']} style={paddingStyle}>
             <div className={styles['layout-content-wrapper']}>
-              {!!breadcrumb.length && (
-                <div className={styles['layout-breadcrumb']}>
-                  <Breadcrumb>
-                    {breadcrumb.map((node, index) => (
-                      <Breadcrumb.Item key={index}>
-                        {typeof node === 'string' ? locale[node] || node : node}
-                      </Breadcrumb.Item>
-                    ))}
-                  </Breadcrumb>
-                </div>
-              )}
               <Content>
                 <Switch>
                   {flattenRoutes.map((route, index) => {

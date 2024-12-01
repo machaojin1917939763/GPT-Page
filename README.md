@@ -88,6 +88,17 @@ const websocket = new WebSocket('ws://127.0.0.1:8081/websocket/chaojin');
 ```env
 REACT_APP_API_URL=http://localhost:8080
 REACT_APP_WEBSOCKET_URL=ws://localhost:8081
+REACT_APP_MOCK=false  # 禁用 mock 数据
+```
+
+### 启动选项
+
+```bash
+# 不使用 mock 数据启动（推荐）
+npm run dev
+
+# 使用 mock 数据启动（需要时可用）
+cross-env REACT_APP_MOCK=true npm run dev
 ```
 
 ## 开发说明
